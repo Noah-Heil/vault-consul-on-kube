@@ -61,14 +61,12 @@ spec:
               protocol: "UDP"
           volumeMounts:
             - mountPath: /var/lib/consul
-              name: data
+              name: consol-2-pvc
             - name: "consulconfig"
               mountPath: /etc/consul
       volumes:
-        - name: data
-          gcePersistentDisk:
-            pdName: consul-2
-            fsType: ext4
+        - persistentVolumeClaim:
+          claimName: consol-2-pvc
         - name: "consulconfig"
           "secret": {
             "secretName": "consul-config"
