@@ -6,7 +6,7 @@ metadata:
     name: consul-http
 spec:
   ports:
-  - port: 8500
+  - port: 80
     targetPort: 8500
     name: http
   selector:
