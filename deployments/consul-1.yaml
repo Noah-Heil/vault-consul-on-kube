@@ -37,27 +37,27 @@ spec:
             - containerPort: 8300
               name: server
             - containerPort: 8301
+              protocol: "TCP"
               name: serflan-tcp
-              protocol: "TCP"
             - containerPort: 8301
+              protocol: "UDP"
               name: serflan-udp
-              protocol: "UDP"
             - containerPort: 8302
-              name: serfwan-tcp
               protocol: "TCP"
+              name: serfwan-tcp
             - containerPort: 8302
-              name: serfwan-udp
               protocol: "UDP"
+              name: serfwan-udp
             - containerPort: 8400
               name: rpc-port
             - containerPort: 8500
               name: api-port
             - containerPort: 8600
-              name: consuldns-tcp
               protocol: "TCP"
+              name: consuldns-tcp
             - containerPort: 8600
-              name: consuldns-udp
               protocol: "UDP"
+              name: consuldns-udp
           volumeMounts:
             - mountPath: /var/lib/consul
               name: consol-1-pvc
