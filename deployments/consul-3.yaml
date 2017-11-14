@@ -60,15 +60,16 @@ spec:
               protocol: "UDP"
               name: consuldns-udp
           volumeMounts:
-            - mountPath: /var/lib/consul
-              name: consol-3-pvc
-            - mountPath: /etc/consul
-              name: "consulconfig"
+            - name: consol-3-home
+              mountPath: /var/lib/consul
+            - name: "consulconfig"
+              mountPath: /etc/consul
 
       volumes:
-        - persistentVolumeClaim:
-          claimName: consol-3-pvc
-        - name: "consulconfig"
-          "secret": {
-            "secretName": "consul-config"
-          }
+      - name: consol-3-home
+        persistentVolumeClaim:
+        claimName: consol-3-pvc
+      - name: "consulconfig"
+        "secret": {
+          "secretName": "consul-config"
+        }
