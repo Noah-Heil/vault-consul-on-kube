@@ -1,0 +1,20 @@
+# Set the DNS record prefix & the Service name and then retrieve the ELB URL
+export DNS_RECORD_PREFIX="consul"
+export SERVICE_NAME="nginx"
+export NGINX_ELB=$(kubectl get svc/${SERVICE_NAME} \
+       --namespace=nginx-ingress \
+       --template="{{range .status.loadBalancer.ingress}} {{.hostname}} {{end}}")
+
+
+# Add to JSON file
+sed -i -e 's|"Name": ".*|"Name": "'"${DNS_RECORD_PREFIX}.${DOMAIN_NAME}"'",|g' \
+    scripts/apps/dns-records/dns-record-single.json
+sed -i -e 's|"Value": ".*|"Value": "'"${NGINX_ELB}"'"|g' \
+    scripts/apps/dns-records/dns-record-single.json
+
+
+# Create DNS records
+aws route53 change-resource-record-sets \
+    --hosted-zone-id ${DOMAIN_NAME_ZONE_ID} \
+    --change-batch file://scripts/apps/dns-records/dns-record-single.json
+
