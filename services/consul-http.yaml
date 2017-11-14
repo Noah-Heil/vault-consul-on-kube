@@ -10,4 +10,4 @@ spec:
     targetPort: 8500
     name: http
   selector:
-    app: consul-1
+    app: consul
