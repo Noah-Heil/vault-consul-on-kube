@@ -64,11 +64,10 @@ spec:
               mountPath: /var/lib/consul
             - name: "consulconfig"
               mountPath: /etc/consul
-
       volumes:
       - name: consol-3-home
         persistentVolumeClaim:
-        claimName: consol-3-pvc
+          claimName: consol-3-pvc
       - name: "consulconfig"
         "secret": {
           "secretName": "consul-config"
