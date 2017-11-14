@@ -7,38 +7,38 @@ metadata:
 spec:
 #  clusterIP: 10.7.240.103
   ports:
-    - name: http
-      port: 8500
-      targetPort: 8500
-    - name: rpc
-      port: 8400
-      targetPort: 8400
-    - name: serflan-tcp
-      protocol: "TCP"
-      port: 8301
-      targetPort: 8301
-    - name: serflan-udp
-      protocol: "UDP"
-      port: 8301
-      targetPort: 8301
-    - name: serfwan-tcp
-      protocol: "TCP"
-      port: 8302
-      targetPort: 8302
-    - name: serfwan-udp
-      protocol: "UDP"
-      port: 8302
-      targetPort: 8302
-    - name: server
-      port: 8300
-      targetPort: 8300
-    - name: consuldns
-      port: 8600
-      targetPort: 8600
-    - name: consuldns-udp
-      protocol: "UDP"
-      port: 8600
-      targetPort: 8600
+  - port: 8500
+    targetPort: 8500
+    name: http
+  - port: 8400
+    targetPort: 8400
+    name: rpc
+  - port: 8301
+    targetPort: 8301
+    protocol: "TCP"
+    name: serflan-tcp
+  - port: 8301
+    targetPort: 8301
+    protocol: "UDP"
+    name: serflan-udp
+  - port: 8302
+    targetPort: 8302
+    protocol: "TCP"
+    name: serfwan-tcp
+  - port: 8302
+    targetPort: 8302
+    protocol: "UDP"
+    name: serfwan-udp
+  - port: 8300
+    targetPort: 8300
+    name: server
+  - port: 8600
+    targetPort: 8600
+    name: consuldns
+  - port: 8600
+    targetPort: 8600
+    protocol: "UDP"
+    name: consuldns-udp
   selector:
     app: consul
     member: consul-3
