@@ -1,0 +1,27 @@
+
+# Export env var
+export ACL_MASTER_TOKEN=$(uuidgen)
+export CONSUL_ENCRYPTION_TOKEN=$(./consul)
+
+# Mod Consul Config
+sed -i -e 's|"acl_datacenter":.*|"acl_datacenter":"'${AWS_REGION}'",|g' \
+   ./consul_config.json
+
+
+sed -i -e 's|"datacenter":.*|"datacenter":"'${AWS_REGION}'",|g' \
+   ./consul_config.json
+
+
+sed -i -e 's|"acl_master_token":.*|"acl_master_token":"'${ACL_MASTER_TOKEN}'",|g' \
+   ./consul_config.json
+
+
+sed -i -e 's|"encrypt":.*|"encrypt":"'${CONSUL_ENCRYPTION_TOKEN}'"|g' \
+   ./consul_config.json
+
+
+# Creat Consul Config
+kubectl create secret generic consul-config --from-file=./consul_config.json
+
+# Create the deployments
+kubectl apply -f ../deployments/consul-1.yaml -f ../deployments/consul-2.yaml -f ../deployments/consul-3.yaml
