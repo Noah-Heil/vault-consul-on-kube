@@ -7,8 +7,9 @@ metadata:
     app: vault
 spec:
   ports:
-  - port: 80
+  - port: 8200
     targetPort: 8200
+    protocol: TCP
     name: vaultport
   selector:
     app: vault  
