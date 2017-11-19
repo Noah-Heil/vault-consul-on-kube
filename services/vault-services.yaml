@@ -8,7 +8,7 @@ metadata:
 spec:
   ports:
   - port: 8200
-    targetPort: 8200
+    targetPort: 8201
     protocol: TCP
     name: vaultport
   selector:
