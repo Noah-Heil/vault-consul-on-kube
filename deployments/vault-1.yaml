@@ -17,7 +17,6 @@ spec:
         - name: vault
           image: "drud/vault:0.7.0"
           resources:
-          resources:
             requests:
               cpu: 300m
               memory: 1000Mi
@@ -76,12 +75,14 @@ spec:
                 mountPath: /etc/tls
               - name: log-storage
                 mountPath: /vault/logs
+              - name: "consulconfig"
+                mountPath: /etc/consul
         - name: consul-agent-client
           image: "consul:0.7.2"
-#          resources:
-#            limits:
-#              cpu: 100m
-#              memory: 200Mi
+          resources:
+            limits:
+              cpu: 100m
+              memory: 200Mi
           args:
             - "agent"
             - "-data-dir=/tmp/consul"
@@ -117,5 +118,3 @@ spec:
           "secret": {
             "secretName": "consul-config"
           }
-
----

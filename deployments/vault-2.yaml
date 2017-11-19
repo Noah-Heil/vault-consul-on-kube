@@ -44,8 +44,8 @@ spec:
                 backend "consul" {
                   address = "localhost:8500"
                   cluster_addr = "https://$(VAULT_2_SERVICE_HOST):$(VAULT_2_SERVICE_PORT_BACKENDPORT)"
-                  disable_registration = "true"
                   token = "$VAULT_CONSUL_KEY"
+                  disable_registration = "true"
                 }
                 listener "tcp" {
                   address = "0.0.0.0:8200"
